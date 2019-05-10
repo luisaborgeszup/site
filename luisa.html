@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> aulinha de git </title>
+</head>
+<body>
+		GIT
+
+	Git é um sistema de controle de versão de arquivos. Através deles podemos desenvolver projetos na qual diversas pessoas podem contribuir simultaneamente no mesmo, editando e criando novos arquivos e permitindo que os mesmos possam existir sem o risco de suas alterações serem sobrescritas.
+	Uma das aplicações do git é permitir que um arquivo possa ser editado ao mesmo tempo por pessoas diferentes. 
+	Outro fator importante do git (e essa é um dos seus diferenciais em relação ao svn – caso vc o conheça) é a possibilidade de criar, a qualquer momento, vários snapshots do seu projeto, ou como chamamos mais “nerdmenete”, branch. Suponha que o seu projeto seja um site html, e você deseja criar uma nova seção no seu código HTML, mas naquele momento você não deseja que estas alterações estejam disponíveis para mais ninguém, só para você. Isso é, você quer alterar o projeto (incluindo vários arquivos nele), mas ainda não quer que isso seja tratado como “oficial” para outras pessoas, então vc cria um branch (como se fosse uma cópia espelho) e então trabalha apenas nesse branch, até acertar todos os detalhes dele. Após isso, você pode fazer um merge de volta do seu branch até o projeto original. Veja bem, se tudo isso que você leu só ajudou a te confundir mais – respire fundo – e siga em frente. Com exemplos tudo fica melhor.
+________________________________________________________________________
+
+SNAPSHOT
+	
+	Snapshot é uma expressão em inglês que significa "foto instantânea" ou "registro instantâneo" e possui diversos significados dentro do mundo contemporâneo da informática, como o armazenamento da condição de um banco de dados, servindo de registro do mesmo para possíveis correções, caso seja feita alguma alteração equivocada no futuro.
+	Com esta ferramenta, apenas é salvo o estado do banco de dados do momento que o snapshot foi feito. Exemplo: às 12h foi feito o snapshot de uma base de dados, sendo que às 12h15 foi feita uma alteração no banco de dados, que não deveria ser feita. Com o snapshot, o usuário poderá restaurar o estado do banco de dados exatamente como estava às 12h.
+	Traduzido do inglês, snapshot era somente um sinônimo de retrato instantâneo. Com o passar do tempo, o termo passou a ser empregado também como cópia de ambientes como imagens em vídeo, memória, servidores ou dos sistemas de armazenamento de dados.
+	Muito usado em infraestruturas de TI como datacenters, o snapshot é um retrato fiel de uma determinada situação do ambiente, seja ela de vídeo (screenshot), dados ou de memória. Profissionais da tecnologia da informação (T.I) usam essa ferramenta em ambientes virtualizados antes de fazer atualizações em seus servidores, storages e softwares, sempre com o objetivo de registrar a situação ("fazendo uma foto") num dado momento para posterior recuperação do sistema em caso de problemas. Como qualquer outra tecnologia de proteção de dados, os snapshots são de grande ajuda para manter sistemas de computação em funcionamento.
+	Para melhor definição sobre a diferença entre cópia de backup e snapshot, vamos utilizar a seguinte analogia:
+
+		Suponhamos que você possua um arquivo de texto criado 		em Word que vem recebendo diversas alterações com o passar do 		tempo. Como esse arquivo é aberto e salvo a cada operação, 		somente a versão mais atualizada é mantida. Porém, numa dessas 		atualizações diárias alguns dados importantes são apagados por 		engano. Nesse caso, a recuperação torna-se impossível, pois o 		arquivo original foi reescrito e substituído, gerando um novo 		documento.
+		Caso o snapshot estivesse registrando o status desse 		arquivo a cada alteração, seria possível restaurar o documento 		à partir de qualquer data registrada, inclusive se o mesmo 		fosse corrompido com o passar do tempo. No entanto deve-se ter 		em mente que o snapshot não armazena uma cópia do arquivo 		original, mas sim uma imagem estática do estado do arquivo no 		momento do registro.
+
+	Apesar do snapshot não ser um backup, sua estrutura de armazenamento diferenciada fornece as seguintes vantagens:
+
+		~Os snapshots são criados instantaneamente.
+		~As operações de restauração são extremamente rápidas.
+		~Baixo consumo de armazenamento, pois o snapshot 			armazena apenas metadados ou estabelece marcadores 			sobre os dados originais.
+		~É possível criar diversas capturas rapidamente em 			pouco tempo.
+		~O usuário pode agendar capturas de snapshots a cada 			hora.
+	        ~Os dados corrompidos ou excluídos podem ser 			recuperados a partir do snapshot para reparar dados 			originais.
+		~Em caso de erro do usuário, o administrador pode 			reverter a partir do snapshot tirado antes do erro.
+		~Não exige muito do desempenho do dispositivo de 			armazenamento.
+	
+	Mas é preciso ficar atento. As capturas realizadas ficam armazenadas no mesmo dispositivo e volume que os dados originais, ou seja, se houver algum problema no dispositivo ou se o todo volume for corrompido, os snapshots também serão corrompidos e não haverá como utilizá-los. O recurso também não poderá restaurar um arquivo se este já estiver danificado antes de ser feita a captura do snapshot.
+________________________________________________________________________
+
+GITHUB
+
+	O Github é um serviço web que oferece diversas funcionalidades extras aplicadas ao git. Resumindo, você poderá usar gratuitamente o github para hospedar seus projetos pessoais. Além disso, quase todos os projetos/frameworks/bibliotecas sobre desenvolvimento open source estão no github, e você pode acompanhá-los através de novas versões, contribuir informando bugs ou até mesmo enviando código e correções. 
+
+
+Criando a conta no GitHub
+
+	Você verá um botão verde +New Repository na qual poderá criar 		um repositório;
+ 
+	Nesta imagem estamos criando um repositório cujo nome é site, 		de domínio público e com o arquivo README.md embutido, que 		contém uma descrição do seu projeto;
+
+	Após a criação do repositório, ele estará disponível no 	endereço https://github.com/<username>/site, onde username é o
+	login que você usou para se cadastrar;
+
+	Repare apenas no botão HTTPs Clone Url na parte inferior à 		direta. Esta URl será necessária para que possamos “clonar” 		este projeto em nosso ambiente de estudo (sua máquina windows, 		mac, linux ou a vm). Clique no botão de copiar URL e perceba 		que a seguinte URL está na área de transferência: 
+	https://github.com/<username>/site.git.
+
+Configurando o git
+
+	Existem 2 pequenos passos para configurar o seu GIT para ter 		um acesso mais simplificado ao github. Aqui estaremos 		estabelecendo que, sempre que necessitar, você irá 		fornecer o seu login e senha ao GitHub;
+	
+	Com o seu terminal git aberto, vamos digitar:
+
+		$ git config --global user.name "YOUR NAME"
+		$ git config --global user.email "YOUR EMAIL ADDRESS"
+
+		Estas configurações ficam alocadas no arquivo 			~/.gitconfig, onde o ~ é o seu diretório home:
+
+			luisa@luisa-370E4K:~$ more ~/.gitconfig
+			[user]
+			name = luisaborgeszup
+			email = luisa.borges@zup.com.br
+
+Clonagem
+
+	Então o que temos até agora é o git configurado para utilizar 		o github e o projeto no github criado. Precisamos trazer este 		projeto para o nosso git, e este processo se chama clonar. 		Então, quando você quiser começar um projeto utilizando git, 		você cria ele no github e clona na sua máquina. O comando para 		clonar o projeto é git clone "url", veja:
+
+			git clone 					https://github.com/<username>/site.git
+
+				Cloning into 'site'...
+				remote: Enumerating objects: 3, done.
+				remote: Counting objects: 100% (3/3), 					done.
+				remote: Total 3 (delta 0), reused 0 					(delta 0), pack-reused 0
+				Unpacking objects: 100% (3/3), done.
+
+			luisa@luisa-370E4K:~$ ls site
+			README.md
+
+	Perceba que, ao fazer o git clone, o projeto é baixado para a 		sua máquina, e uma pasta com o nome do projeto é criada.
+
+
+Comandos iniciais do git
+
+	Com o repositório na sua máquina, vamos aprender 4 		comandos iniciais que farão parte da sua vida a partir de 		agora:
+
+		~git add <arquivos...> Este comando adiciona o(s) 			arquivo(s) em um lugar que chamamos de INDEX, que 			funciona como uma área do git no qual os arquivos 			possam ser enviados ao Github. É importante saber que 			ADD não está adicionando um arquivo novo ao 			repositório, mas sim dizendo que o arquivo (sendo novo 			ou não) está sendo preparado para entrar na próxima 			revisão do repositório;
+
+		~git commit -m "comentário qualquer" Este comando 			realiza o que chamamos de “commit”, que significa 			pegar todos os arquivos que estão naquele lugar INDEX 			que o comando add adicionou e criar uma revisão com um 			número e um comentário, que será vista por todos;
+		
+		~git push Push (empurrar) é usado para publicar todos 			os seus commits para o github. Neste momento, será 			pedido a sua senha;
+
+		~git status Exibe o status do seu repositório atual.
+
+Praticando
+
+	Após clonar o seu projeto, crie o arquivo index.html na pasta 		site que é o seu repositório git. Após criar o arquivo, 	execute o comando git status. A resposta é semelhante a figura 		a seguir:
+
+		luisa@luisa-370E4K:~/site$ touch index.html
+		luisa@luisa-370E4K:~/site$ git status
+		No ramo master
+		Your branch is up to date with 'origin/master'.
+
+		Arquivos não monitorados:
+		  (utilize "git add <arquivo>..." para incluir o 			que será submetido)
+
+			index.html
+
+		nada adicionado ao envio mas arquivos não registrados 			estão presentes (use "git add" to registrar)
+
+	Ou seja, o comando git status nos trouxe várias informações, 		que iremos ignorar a princípio, exceto pelo Untracked files, 		dizendo que existe um arquivo que não está sendo “mapeado” 		pelo git. Para preparar este arquivo para o seu versionamento, 		usamos o comando git add, veja:
+
+		luisa@luisa-370E4K:~/site$ git add index.html
+		luisa@luisa-370E4K:~/site$ git status
+		No ramo master
+		Your branch is up to date with 'origin/master'.
+	
+		Mudanças a serem submetidas:
+		  (use "git reset HEAD <file>..." to unstage)
+
+			new file:   index.html
+
+	Agora temos o nosso arquivo index.html no INDEX do 		repositório, ou se você quiser pensar: “preparado para um 		commit”. Para commitar este arquivo, usamos:
+
+		luisa@luisa-370E4K:~/site$ git commit -m "Criação do 			arquivo index.html"
+		[master a78abac] Criação do arquivo index.html
+ 		1 file changed, 0 insertions(+), 0 deletions(-)
+ 		create mode 100644 index.html
+		luisa@luisa-370E4K:~/site$ git status
+		No ramo master
+		Seu ramo está à frente de 'origin/master' por 1 		submissão.
+  		  (use "git push" to publish your local commits)
+
+		nothing to commit, working tree clean
+		luisa@luisa-370E4K:~/site$ 
+
+	Após “commitar” o arquivo, ele já está presente no nosso 		repositório local, tanto que realizamos o comando git status 		novamente e ele retornou que não havia nada de novo no 		projeto. Perceba agora que, mesmo recarregando o projeto no 		github, nada muda. Ou seja, estas mudanças até agora foram 		locais, você pode realizar várias operações antes de 
+	publicá-las no github. Para publicar, usamos o comando git 		push:
+
+		luisa@luisa-370E4K:~/site$ git push
+		Username for 'https://github.com': luisaborgeszup
+		Password for 'https://luisaborgeszup@github.com': 
+		Counting objects: 3, done.
+		Delta compression using up to 4 threads.
+		Compressing objects: 100% (2/2), done.
+		Writing objects: 100% (3/3), 301 bytes | 301.00 KiB/s, 			done.
+		Total 3 (delta 0), reused 0 (delta 0)
+		To https://github.com/luisaborgeszup/site.git
+   		73e67a7..a78abac  master -> master
+
+	Após realizar o git push podemos ver no site github as 		mudanças realizadas no projeto;
+
+	Desta forma, aprendemos os 4 comandos mais básicos do git, e 		com ele podemos começar a compreender como funciona o processo 		de versionamento de arquivos com git e github.
+
+Como arrumar mensagem do commit
+
+	Imagine que você tenha errado a mensagem que escreveu no 		commit ou simplesmente queira melhorar a descrição do seu 		trabalho. Você já comitou a mensagem mas ainda não fez o push 		das suas modificações para o servidor. Nesse caso você usa a 		flag --amend. Fica assim:
+
+		$ git commit --amend
+
+	O git commit --amend modifica a mensagem do commit 		mais recente, ou seja, o último commit feito por você no 		projeto. Além de você mudar a mensagem do commit, você 		consegue adicionar arquivos que você se esqueceu ou retirar 		arquivos comitados por engano. O git cria um commit totalmente 		novo e corrigido.
+
+git pull
+
+	Ainda existe um comando importante neste processo, que é o git 		pull. Ele é usado para trazer todas as modificações que estão 		no github para o seu projeto local. Isso é vital quando 	existem projetos mantidos por mais de uma pessoa, ou se você 		possui duas máquinas e precisa manter a sincronia entre elas. 		Supondo que você possui uma máquina no trabalho e outra em 		casa. Ambas tem o repositório local ligado ao github. Quando 		você executar um git push em uma das máquinas, terá que 	realizar um git pull na outra;
+
+	Para exemplificar, vamos alterar o arquivo README.md 		diretamente no github. Isso é possível clicando no arquivo e 		depois clicando no ícone para edição;
+
+	Após clicar em edit, adicione algum texto, forneça uma 		mensagem de commit e clique no botão “Commit Changes”. Com 		isso, uma nova revisão no seu projeto é criada, mas como ela 		foi gerada no github, o seu projeto local está desatualizado. 		Para atualizar o seu projeto, use git pull, e perceba que o 		arquivo README.md é atualizado de acordo com a sua última 		revisão:
+
+		luisa@luisa-370E4K:~/site$ git pull
+		remote: Enumerating objects: 5, done.
+		remote: Counting objects: 100% (5/5), done.
+		remote: Compressing objects: 100% (2/2), done.
+		remote: Total 3 (delta 0), reused 0 (delta 0), 
+		pack-reused 0
+		Unpacking objects: 100% (3/3), done.
+		From https://github.com/luisaborgeszup/site
+   		   af928b3..9dd9eb1  master     -> origin/master
+		Updating af928b3..9dd9eb1
+		Fast-forward
+ 		 README.md | 1 +
+ 		 1 file changed, 1 insertion(+)
+
+Melhorando o conceito do comando git add
+
+	Possivelmente você imaginou que o comando git add é 		usado para novos arquivos, mas isso não é verdade. O comando 		add é usado para adicionar qualquer alteração de arquivo ao 		INDEX do git, que é uma área especial onde os arquivos estão 		sendo preparados para o commit. Quando usamos add, estamos 		dizendo que o arquivo estará adicionando ao próximo commit, 		quando este for realizado. Isso é necessário porque nem sempre 		queremos que todos os arquivos que alteramos sejam comitados;
+
+	Vamos a um exemplo simples, adicionando o seguinte código no 		arquivo index.html:
+
+	Após salvar este modelo html, o comando git status irá 		apresentar:
+
+
+		luisa@luisa-370E4K:~/site$ git status
+		No ramo master
+   		Your branch is up to date with 'origin/master'.
+
+		Changes not staged for commit:
+		  (utilize "git add <arquivo>..." para atualizar o que 	       		será submetido)
+		  (utilize "git checkout -- <arquivo>..." para 				descartar mudanças no diretório de trabalho)
+
+				modified:   index.html
+
+		nenhuma modificação adicionada à submissão (utilize 			"git add" e/ou "git commit -a")
+
+	Para adicionar o arquivo e prepará-lo para o commit, usamos 		git add index.html. Desta forma, ele está pronto para usarmos 		o comando git commit, o que não faremos agora. Antes disso, 		altere novamente o arquivo e adicione algum texto entre as 		tags body, por exemplo:
+
+	Após alterar o arquivo, temos a seguinte situação:
+
+		1. Adicionamos o conteúdo html no arquivo index.html
+		2. Realizamos `git add index.html`
+		3. Alteramos index.html e adicionamos o texto entre as 			tags body
+
+	Neste momento, faça: git commit -m "Alteração no arquivo 		index.html", e após isso, faça: git push:
+		
+		luisa@luisa-370E4K:~/site$ git commit -m "Alteração no 			arquivo index.html"
+		[master 606ba8f] Alteração no arquivo index.html
+		 1 file changed, 9 insertions(+)
+		luisa@luisa-370E4K:~/site$ git push
+		Username for 'https://github.com': luisaborgeszup
+		Password for 'https://luisaborgeszup@github.com': 
+		Counting objects: 3, done.
+		Delta compression using up to 4 threads.
+		Compressing objects: 100% (3/3), done.
+		Writing objects: 100% (3/3), 382 bytes | 382.00 KiB/s, 			done.
+		Total 3 (delta 0), reused 0 (delta 0)
+		To https://github.com/luisaborgeszup/site.git
+		   9dd9eb1..606ba8f  master -> master
+
+	
+ 		Analise agora no github se a sua alteração na tag body 			está visível. Ela não estará. Mas porque isso 			aconteceu? Quando usamos o comando git add, aquela 			alteração no body ainda não tinha sido escrita, então 			ela não estará pronta até que você faça novamente o 			comando git add. Em termos técnicos, a segunda 			alteração que fez ainda não está na INDEX do 			repositório. Como tarefa, faça novamente git add 			index.html, git commit e git push.
+</body>
+</html>
+
